@@ -3,39 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>曲リスト</title>
+    <title>for Vocalist Page</title>
 	
 	<style>
-  body {
+		  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #091221; /* ダークネイビー背景（夜のイメージ） */
     text-align: center;
   }
 
-  /* タイトルロゴ部分 */
-  h1 {
-    background-image: url('rogo.png');
-    background-size: contain; /* 画像を親要素に合わせて縦横比を保ちながらカバー */
-    background-position: center center; /* 画像を中央に配置 */
-	background-repeat: no-repeat; /* 画像がリピートしないようにする */
-    color: white;
-    padding-left: 30px;
-    padding-top: 20px;
-	padding-bottom: 10px;
-    height: 200px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-  }
 
+  /* ▼ 検索アイコンのSVGカラー */
+.search-icon svg path {
+  fill: #0585e6;
+}
+
+    /* 歯車アイコン */
+  .gear-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+/* ▼ 歯車アイコンのSVGカラー */
+.gear-icon svg path {
+  fill: #0585e6;
+}
+
+.gear-icon:hover svg path {
+  fill: #03a9f4;
+}
+  
+  
+  /* プロフィールセクション */
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  background: linear-gradient(135deg, #0236a5, #fe0369);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 影を追加して立体感を出す */
+}
+
+/* プロフィール画像 */
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-right: 20px;
+}
+
+/* プロフィール情報 */
+.profile-info {
+  flex: 1;
+  text-align: left;
+}
+
+.profile-info h2 {
+  font-size: 32px; /* 名前を少し大きめに */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-info p {
+  font-size: 14px; /* 少し小さめの文字サイズ */
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.profile-info .profile-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.social-links a {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #0353c7; /* メインカラーをやや明るく */
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  min-width: 90px;
+  text-align: center;
+}
+
+.social-links a:hover {
+  background-color: #0469d7;
+}
+
+/* 誕生日と活動拠点を横並びにする */
+.profile-info p {
+  display: flex;  /* 横並びにする */
+  gap: 20px;  /* アイテム間のスペースを設定 */
+  margin-bottom: 8px;
+}
+
+#birthday, #location {
+  font-size: 12px; /* 文字サイズを小さく */
+  color: #89bfff; /* クールな淡ブルーで視認性よく */
+  margin: 0; /* 余白をリセット */
+}
+
+  
   /* 曲リスト全体の枠 */
   .song-list {
-    border: 2px solid #2c3e50;
-    background-color: #ffffff;
+    border: 2px solid #0236a5;
+    background-color: #0d1729;
     padding: 20px;
     border-radius: 10px;
     max-width: 800px;
@@ -46,7 +140,7 @@
 
   /* アーティスト名（ネイビー背景＋白文字） */
   .song-list h2 {
-    background-color: #2c3e50;
+    background-color: #0236a5;
     color: white;
     padding: 6px 12px;
     border-radius: 5px;
@@ -55,17 +149,19 @@
     margin-bottom: 10px;
   }
 
-  /* 曲名（ブラウン） */
+  /* 曲名 */
   .song-title {
-    color: #8b5e3c;
+  color: #fe0369;
+
     font-weight: bold;
     font-size: 13px;
     margin-bottom: 4px;
   }
 
-  /* 曲の区切り線（黄色） */
+  /* 曲の区切り線 */
   .song {
-    border-bottom: 1px solid #f1c40f;
+border-bottom: 1px solid #c161f9;
+
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
@@ -93,99 +189,108 @@
     font-weight: normal;
   }
 
-  
-  /* 歯車アイコン */
-  .gear-icon {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 999;
-  cursor: pointer;
-}
-  
   /* 検索ボックス */
-  .search-container {
-    display: none;
-    position: fixed;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 400px;
-    background: #f9fbfd;
-    border: 2px solid #2c3e50;
-    border-radius: 10px;
-    padding: 16px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    z-index: 100;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
+.search-container {
+  display: none;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: #ffffff; /* 背景色を明るく */
+  border: 1px solid #ddd; /* 薄いグレーの境界線 */
+  border-radius: 12px; /* 丸みのある角 */
+  padding: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* より優れたシャドウ */
+  text-align: left;
+  z-index: 100;
+  max-height: 80vh;
+  overflow-y: auto;
+  transition: all 0.3s ease; /* スムーズな開閉アニメーション */
+}
 
-  /* 検索見出し（ジャンル検索・年代検索など） */
-  .search-section-title {
-    background-color: #2c3e50;
-    color: white;
-    padding: 5px 10px;
-    font-weight: bold;
-    margin-top: 15px;
-    border-radius: 5px;
-    font-size: 14px;
-  }
+/* 検索見出し（ジャンル検索・年代検索など） */
+.search-section-title {
+  background-color: #0236a5;
+  color: white;
+  padding: 8px 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-size: 16px; /* 少し大きくして視認性を向上 */
+  text-transform: uppercase; /* タイトルを大文字に */
+  letter-spacing: 1px; /* スペーシングを追加 */
+}
 
-  /* キーワード入力欄 */
-  .search-container input[type="text"] {
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 8px;
-    width: 90%;
-    max-width: 320px;
-    font-size: 13px;
-    background-color: #fff;
-    color: #2c3e50;
-  }
+/* キーワード入力欄 */
+.search-container input[type="text"] {
+  border: 2px solid #ddd; /* 薄いグレー */
+  border-radius: 8px; /* 丸みのある角 */
+  padding: 12px 16px; /* 十分なパディング */
+  width: 100%; /* フル幅 */
+  max-width: 320px;
+  font-size: 16px; /* 少し大きく */
+  background-color: #f6f6f6; /* 明るい背景 */
+  color: #333; /* ダークグレー */
+  box-sizing: border-box;
+  transition: border 0.3s ease; /* 入力時のエフェクト */
+}
 
-  /* チェックボックス全体 */
-  .checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 0;
-    margin-top: 8px;
-  }
+.search-container input[type="text"]:focus {
+  border-color: #0236a5;
+  outline: none;
+}
 
-  .checkbox-group label {
-    width: 50%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    white-space: nowrap;
-    gap: 6px;
-  }
+/* チェックボックス全体 */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
 
-  .checkbox-group input[type="checkbox"] {
-    transform: scale(0.85);
-    accent-color: #2c3e50;
-    margin: 0;
-  }
+/* チェックボックスラベル */
+.checkbox-group label {
+  width: 48%; /* 横幅を調整して隙間を減らす */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 8px;
+}
 
-  /* 検索・クリアボタン */
-  .search-container button {
-    padding: 6px 12px;
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-right: 10px;
-    font-size: 13px;
-  }
+/* チェックボックス */
+.checkbox-group input[type="checkbox"] {
+  transform: scale(1.1); /* チェックボックスを少し大きく */
+  accent-color: #0236a5;
+  margin: 0;
+}
 
-  .search-container button:hover {
-    background-color: #1e2f40;
-  }
+/* 検索・クリアボタン */
+.search-container button {
+  padding: 10px 20px;
+  background-color: #0236a5;
+  color: white;
+
+  border: none;
+  border-radius: 30px; /* 丸いボタン */
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #0353c7;
+
+  transform: scale(1.05); /* ホバー時に少し拡大 */
+}
+
+/* クリアボタンのカスタマイズ */
+.search-container button:active {
+  transform: scale(0.95); /* クリック時に少し縮小 */
+}
 
   /* ジャンルタグ（アイコン） */
   .genre-tags {
@@ -210,17 +315,114 @@
   }
 
   .genre-tags svg path {
-    fill: #4a5d6d;
+  fill: #0585e6; /* ネオンブルーに近いジャンルタグ色 */
+
   }
 
+  /* 編集モーダル */
+  #editModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
 
-  .top-button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .edit-button {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .edit-button:hover {
+    background-color: #218838;
+  }
+
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+
+  /* ▼ ドロップダウンメニューのスタイル ▼ */
+.dropdown {
+  position: relative;
+  display: inline-block;
   margin: 10px 20px;
 }
 
+.dropbtn {
+  background-color: #0236a5;
+  color: white;
+  padding: 10px 32px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.dropdown-content a {
+  color: #0236a5;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #0353c7;
+
+}
+  
 
 /* ページネーション全体の枠 */
 .pagination {
@@ -230,8 +432,9 @@
 
 /* ページボタンのスタイル */
 .pagination button {
-  background-color: #2c3e50; /* ネイビー */
-  color: #fff;
+  background-color: #0236a5;
+
+  color: white;
   border: none;
   padding: 6px 12px;
   margin: 0 4px;
@@ -243,12 +446,15 @@
 
 /* ホバー時（薄めグレー） */
 .pagination button:hover {
-  background-color: #4a6377;
+  background-color: #0353c7;
+
 }
 
 /* 現在のページ（強調） */
 .pagination button.active-page {
-  background-color: #888; /* グレー */
+  background-color: #fe0369;
+  color: white;
+
   font-weight: bold;
 }
 
@@ -259,7 +465,7 @@
     padding: 20px;
     font-size: 12px;
     color: #888;
-    background-color: #fefefe;
+    background-color: #091221;
   }
 
   footer a {
@@ -278,9 +484,6 @@
 	
 	<div id="debugArea"></div>
 	
-	
-    <h1>歌える曲リスト</h1>
-	
 
 	<!-- 歯車アイコン（右上配置） -->
 <div class="gear-icon">
@@ -289,7 +492,32 @@
       <path d="M19.14,12.94a7.43,7.43,0,0,0,.05-.94,7.43,7.43,0,0,0-.05-.94l2.11-1.65a.5.5,0,0,0,.12-.63l-2-3.46a.5.5,0,0,0-.61-.22l-2.49,1a7.38,7.38,0,0,0-1.63-.94l-.38-2.65A.5.5,0,0,0,13.66,3H10.34a.5.5,0,0,0-.5.42L9.46,6.07a7.38,7.38,0,0,0-1.63.94l-2.49-1a.5.5,0,0,0-.61.22l-2,3.46a.5.5,0,0,0,.12.63L4.86,11.06a7.43,7.43,0,0,0,0,1.88L2.75,14.59a.5.5,0,0,0-.12.63l2,3.46a.5.5,0,0,0,.61.22l2.49-1a7.38,7.38,0,0,0,1.63.94l.38,2.65a.5.5,0,0,0,.5.42h3.32a.5.5,0,0,0,.5-.42l.38-2.65a7.38,7.38,0,0,0,1.63-.94l2.49,1a.5.5,0,0,0,.61-.22l2-3.46a.5.5,0,0,0-.12-.63ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
     </svg>
   </a>
-</div>
+</div>	
+
+	
+
+<!-- プロフィールセクション -->
+<section class="profile-section">
+  <div class="profile-image">
+    <img src="avatar.jpeg" alt="Profile Image">
+  </div>
+  <div class="profile-info">
+    <h2 id="name">名前</h2>
+    <p id="bio">自己紹介文</p>
+	<!-- プロフィール情報 -->
+	<p><span id="birthday"></span></p>
+    <p><span id="location"></span></p>
+    <div class="social-links">
+      <a href="" id="twitter" target="_blank">Twitter</a>
+      <a href="" id="youtube" target="_blank">YouTube</a>
+      <a href="" id="instagram" target="_blank">Instagram</a>
+      <a href="" id="tiktok" target="_blank">TikTok</a>
+      <a href="" id="otherlink" target="_blank">その他リンク</a>
+    </div>
+  </div>
+</section>
+	
+	
 	
     <!-- 🔍アイコン -->
 	<div class="search-icon" onclick="toggleSearch()">
@@ -341,6 +569,8 @@
 <div id="pagination" class="pagination"></div>
 	
 
+	
+
 </div>
 
 
@@ -352,7 +582,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
 
   // Firebase 設定
   const firebaseConfig = {
@@ -364,6 +594,7 @@
     appId: "1:1088637040793:web:c6fd53751988fe0d8b6008"
   };
 
+  // Firebase初期化（1度だけ）
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -388,10 +619,10 @@
 
       // 表示処理呼び出し（外のスクリプト）
       if (typeof window.displaySongs === "function") {
-		  window.__latestSongList = songList;
-		  currentSongList = songList; // ⭐ ページネーションで使うリストとして保存！
-          currentPage = 1;            // ⭐ ページ番号リセットもここで！
-          displaySongs(currentSongList); // ⭐ 書き換えた関数を呼び出す！
+        window.__latestSongList = songList;
+        currentSongList = songList; // ⭐ ページネーションで使うリストとして保存！
+        currentPage = 1;            // ⭐ ページ番号リセットもここで！
+        displaySongs(currentSongList); // ⭐ 書き換えた関数を呼び出す！
       } else {
         console.error("displaySongs 関数が見つかりません！");
       }
@@ -400,6 +631,69 @@
       console.error("❌ Firebase からの取得エラー:", error);
     }
   }
+
+  
+  // Firebase Firestore からデータを取得する関数（プロフィール）
+async function loadProfileData() {
+  console.log("Firestore データの読み込みを開始");
+
+  try {
+    const docRef = doc(db, "profile", "RaL");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      console.log("取得したデータ:", data);
+
+      // プロフィール反映
+      document.getElementById("name").textContent = data.name;
+      document.getElementById("bio").textContent = data.bio;
+
+      const birthdayPrivacy = data.birthdayPrivacy;
+      let birthdayDisplay;
+
+      if (birthdayPrivacy === "public") {
+        const birthdayDate = data.birthday.toDate();
+        birthdayDisplay = `誕生日: ${birthdayDate.toLocaleDateString()}`;
+      } else if (birthdayPrivacy === "month-day-only") {
+        const birthdayDate = data.birthday.toDate();
+        birthdayDisplay = `誕生日: ${birthdayDate.getMonth() + 1}/${birthdayDate.getDate()}`;
+      } else {
+        birthdayDisplay = "誕生日: 非公開";
+      }
+
+      document.getElementById("birthday").textContent = birthdayDisplay;
+
+      const location = data.location || '情報がありません';
+      document.getElementById("location").textContent = `活動拠点: ${location}`;
+
+      // SNSリンクの処理
+      const snsLinks = ["twitter", "youtube", "instagram", "tiktok", "otherlink"];
+      snsLinks.forEach(id => {
+        const element = document.getElementById(id);
+        const url = data[id];
+
+        if (url && url.trim() !== "") {
+          element.href = url;
+          element.style.display = "inline-block";
+        } else {
+          element.style.display = "none";
+        }
+      });
+    } else {
+      console.log("プロフィールが見つかりませんでした");
+    }
+
+  } catch (error) {
+    console.error("プロフィール読み込みエラー: ", error);
+  }
+}
+  
+
+  // ページが読み込まれたときにプロフィールを表示
+  window.onload = loadProfileData;
+
+
 
   // ページ読み込み時に実行
   fetchAndDisplaySongs();
@@ -453,8 +747,7 @@
 };
   
 
-  // ⭐ 曲リストの表示処理
-  let currentSongList = [];
+let currentSongList = [];
 let currentPage = 1;
 const ITEMS_PER_PAGE = 50;
 
@@ -506,7 +799,8 @@ function displaySongs(songList) {
 
   renderPagination(songList.length);
 }
-  // ⭐ ページボタン表示
+
+// ページボタンを表示する
 function renderPagination(totalItems) {
 	
   const paginationContainer = document.getElementById("pagination");
@@ -526,7 +820,6 @@ function renderPagination(totalItems) {
     paginationContainer.appendChild(btn);
   }
 }
-
   
   // ⭐ 検索ブロックの開閉
   function toggleSearch() {
@@ -583,7 +876,15 @@ function renderPagination(totalItems) {
   displaySongs(currentSongList);
 }
 
+  // ⭐ 編集処理
 
+
+  
+
+// モーダルを閉じる関数
+function closeModal() {
+    document.getElementById('editModal').style.display = 'none';
+}
 		
 
 	</script>
