@@ -229,7 +229,7 @@
       document.getElementById('youtube').value = data.youtube || '';
       document.getElementById('instagram').value = data.instagram || '';
       document.getElementById('tiktok').value = data.tiktok || '';
-      document.getElementById('otherlink').value = data.otherLink || '';
+      document.getElementById('otherlink').value = data.otherlink || '';
 
       // 誕生日の公開設定（例）
       if (data.birthdayPrivacy === "public") {
@@ -264,7 +264,7 @@
     const youtube = document.getElementById('youtube').value || ''; 
     const instagram = document.getElementById('instagram').value || ''; 
     const tiktok = document.getElementById('tiktok').value || ''; 
-    const otherLink = document.getElementById('otherlink').value || ''; 
+    const otherlink = document.getElementById('otherlink').value || ''; 
 
     // 誕生日の公開設定
     const birthdayPrivacy = document.querySelector('input[name="birthday-privacy"]:checked').value;
@@ -280,7 +280,7 @@
       youtube,
       instagram,
       tiktok,
-      otherLink
+      otherlink
     };
 
     // データを保存する前に確認用ログ
