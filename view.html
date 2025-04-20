@@ -842,7 +842,7 @@ function renderPagination(totalItems) {
       (song.songFurigana || "").toLowerCase().includes(keyword);
 
     const matchGenre =
-      selectedGenres.length === 0 || song.genres.some(g => selectedGenres.includes(g));
+  selectedGenres.length === 0 || selectedGenres.every(g => song.genres.includes(g));
 
     const matchDecade =
       selectedDecades.length === 0 || selectedDecades.includes(song.decade);
